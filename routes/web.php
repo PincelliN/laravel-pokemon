@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PokemonController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,6 @@ Route::get('/chi-siamo', function () {
 Route::get('/contatti', function () {
     return view('contacts');
 })->name('contacts');
+
+
+Route::resource('pokemon', PokemonController::class);
