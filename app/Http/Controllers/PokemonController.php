@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\Pokemon;
 use Illuminate\Http\Request;
+use App\Functions\Helper;
+use App\Http\Requests\PokemonRequest;
 
 class PokemonController extends Controller
 {
@@ -21,15 +23,21 @@ class PokemonController extends Controller
      */
     public function create()
     {
-        //
+        return view('pokemon.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PokemonRequest $request)
     {
-        //
+        $data=$request->all();
+        $data['slug'] = Helper::generateSlug('name',Pokemon::class);
+        $new_pokemon= new Pokemon();
+        $new_pokemon->fill($data);
+
+        return redirect()->route('pokemon.show',$new_pokemon);
+
     }
 
     /**
@@ -37,7 +45,7 @@ class PokemonController extends Controller
      */
     public function show(Pokemon $pokemon)
     {
-        //
+        return view('pokemon.show',['pokemon'=> $pokemon]);
     }
 
     /**
@@ -51,7 +59,7 @@ class PokemonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pokemon $pokemon)
+    public function update(PokemonRequest $request, Pokemon $pokemon)
     {
         //
     }

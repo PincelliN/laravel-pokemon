@@ -28,7 +28,7 @@
                     <td>{{ $pokemon->type_two }}</td>
                     <td><a class="btn btn-warning" href="{{ route('pokemon.show', $pokemon) }}"><i
                                 class="fa-brands fa-optin-monster"></i></a>
-                        {{-- <a href="{{ route('pokomon.edit', $pokemon) }}"></a> --}}
+
                     </td>
 
 
